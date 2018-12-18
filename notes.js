@@ -38,6 +38,8 @@ var addNote = (title, body) => {
     }
 };
 
+
+
 var getAll = () => {
     console.log('Getting all notes');
 };
@@ -48,7 +50,16 @@ var getNote = (title) => {
 };
 
 var removeNote = (title) => {
-    console.log('Removing note', title);
+    //console.log('Removing note', title);
+    //fetch notes
+    var notes = fetchNotes(); 
+
+    //filter notes, removing the one with title
+    var filteredNotes = notes.filter((note) => note.title !== title);
+
+    saveNotes(filteredNotes);
+
+    return notes.length !== filteredNotes.length;
 };
 
 //have to export the functions so they can be used
