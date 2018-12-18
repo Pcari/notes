@@ -45,8 +45,10 @@ var getAll = () => {
 };
 
 var getNote = (title) => {
-    console.log('Getting note', title);
-
+    //console.log('Getting note', title);
+    var notes = fetchNotes();
+    var filteredNotes = notes.filter((note) => note.title === title); 
+    return filteredNotes[0];
 };
 
 var removeNote = (title) => {
@@ -62,12 +64,20 @@ var removeNote = (title) => {
     return notes.length !== filteredNotes.length;
 };
 
+var logNote = (note) => {
+    console.log('--');
+    console.log(`Title: ${note.title}`);
+    console.log(`Body: ${note.body}`);
+
+};
+
 //have to export the functions so they can be used
 module.exports = {
     addNote: addNote, // equal to just addNote points to addNote function
     getAll,
     getNote,
-    removeNote
+    removeNote,
+    logNote
 };
 
 // module.exports.add = (a, b) => {
